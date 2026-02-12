@@ -1,4 +1,4 @@
 // card.cpp
-// Author: Your name
+// Authors: Isabella Cerrrilos, Haasini Yakkala 
 // Implementation of the classes defined in card.h
 
