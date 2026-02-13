@@ -4,15 +4,24 @@
 
 #ifndef CARD_H
 #define CARD_H
+
+#include <iostream>
+using namespace std; 
+
 class Card{
     public: 
     Card(char s, char val );
     // getter and setter functions
     // operator overloading
+    bool operator==(const Card& other);
+    bool operator<(const Card& other);
+    bool operator>(const Card& other);
+    friend ostream& operator<<(ostream& out, const Card& c);
+
     private:
     char suit;
     char value; 
-    //c1 == c2
-    bool operator==(const Card& lhs, const Card& rhs);
+    
+    
 }
 #endif
