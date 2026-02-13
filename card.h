@@ -13,15 +13,20 @@ class Card{
     Card(char s, char val );
     // getter and setter functions
     // operator overloading
-    bool operator==(const Card& other);
-    bool operator<(const Card& other);
-    bool operator>(const Card& other);
-    friend ostream& operator<<(ostream& out, const Card& c);
+    
+    
 
     private:
     char suit;
     char value; 
+
+    char getSuit() const;
+    char getValue() const;
     
     
-}
+};
+ostream& operator<<(ostream& out, const Card& c);
+bool operator==(const Card& lhs, const Card& rhs);
+bool operator<(const Card& lhs, const Card& rhs);
+bool operator>(const Card& lhs, const Card& rhs);
 #endif
