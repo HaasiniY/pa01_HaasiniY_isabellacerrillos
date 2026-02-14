@@ -4,7 +4,7 @@
 
 #ifndef CARD_LIST_H
 #define CARD_LIST_H
-
+#include "card.h"
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,14 @@ class CardBST{
         ~CardBST();
 
         void printInOrder() const;
-        void printReverseOrder() const;
+        //void printReverseOrder() const;
+        
+        bool contains(Card c) const;
+        bool remove(Card c);
+
+        Card* successor(Card c) const;
+        Card* predecessor(Card c) const;
+
 
         class iterator;
 
@@ -22,17 +29,45 @@ class CardBST{
         iterator end();
         iterator rbegin();
         iterator rend();
-        void erase(Card C);
+        void insert(Card c);
+        void erase(Card c);
 
     private:
 
         struct Node{
-            
-        }
+            Card card;
+            Node* parent;
+            Node* left;
+            Node* right;
+        
+            Node(Card c, Node* p = nullptr) : card(c), parent(p){
+                left = right = nullptr;
+            }
+        };
+        Node* root;
+        void printInOrder(Node* r) const;
+        Node* successor(Node* r) const;
+        Node* predecessor(Node* r) const;
+        Node* getMin(Node* r) const;
+        Node* getMax(Node* r) const;
+        Node* getNodeFor(Card c, Node* r) const;
+        void insert(Card c, Node* root);
+        void clear(Node* r);
+        
 
+    };
 
+    class CardBST::iterator{
+        public:
+            iterator(CardBST::Node* pcurr = nullptr, CardBST* ptree = nullptr) : curr(pcurr), rtree(ptree){}
 
+            CardBST operator*();
+            iterator& operator++();
+            iterator& operator--();
+        private:
+            CardBST::Node* curr;
+            CardBST* rtree;
+    }
 
-}
 
 #endif
