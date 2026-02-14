@@ -42,6 +42,11 @@ bool operator==(const Card& lhs, const Card& rhs) {
            lhs.getValue() == rhs.getValue();
 }
 
+bool operator!=(const Card& lhs, const Card& rhs) {
+    return lhs.getSuit() != rhs.getSuit() ||
+           lhs.getValue() != rhs.getValue();
+}
+
 bool operator<(const Card& lhs, const Card& rhs) {
     int lhsSuit = lhs.getSuitNum(lhs.getSuit());
     int rhsSuit = rhs.getSuitNum(rhs.getSuit());

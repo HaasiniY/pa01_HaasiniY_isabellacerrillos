@@ -164,7 +164,7 @@ bool CardBST::remove(Card c){
 }
 
 
-Card CardBST::iterator::operator*(){
+Card& CardBST::iterator::operator*(){
     return curr->card;
 }
 CardBST::iterator CardBST::begin(){
@@ -186,5 +186,11 @@ CardBST::iterator& CardBST::iterator::operator++(){
 CardBST::iterator& CardBST::iterator::operator--(){
     curr = rtree->getPredecessorNode(curr);
     return *this;
+}
+bool CardBST::iterator::operator!=(const iterator& other) const{
+    return curr != other.curr;
+}
+bool CardBST::iterator::operator==(const iterator& other) const{
+    return curr == other.curr;
 }
 

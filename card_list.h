@@ -54,14 +54,16 @@ class CardBST{
 
     class CardBST::iterator{
         public:
-            iterator(CardBST::Node* pcurr = nullptr, CardBST* ptree = nullptr) : curr(pcurr), rtree(ptree){}
+            iterator(CardBST::Node* pcurr = nullptr, const CardBST* ptree = nullptr) : curr(pcurr), rtree(ptree){}
 
-            Card operator*();
+            Card& operator*();
             iterator& operator++();
             iterator& operator--();
+            bool operator!=(const iterator& other) const;
+            bool operator==(const iterator& other) const;
         private:
             CardBST::Node* curr;
-            CardBST* rtree;
+            const CardBST* rtree;
     };
 
 

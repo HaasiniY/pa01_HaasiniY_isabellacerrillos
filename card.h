@@ -24,6 +24,7 @@ class Card{
 };
 ostream& operator<<(ostream& out, const Card& c);
 bool operator==(const Card& lhs, const Card& rhs);
+bool operator!=(const Card& lhs, const Card& rhs);
 bool operator<(const Card& lhs, const Card& rhs);
 bool operator>(const Card& lhs, const Card& rhs);
 #endif
