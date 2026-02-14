@@ -1,5 +1,5 @@
 // card_list.cpp
-// Author: Your name
+// Author: Isabella Cerrillos, Haasini Yakkala
 // Implementation of the classes defined in card_list.h
 
 #include "card_list.h"
