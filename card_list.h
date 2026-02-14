@@ -17,10 +17,8 @@ class CardBST{
         //void printReverseOrder() const;
         
         bool contains(Card c) const;
-        //bool remove(Card c);
-
-        Card* successor(Card c) const;
-        Card* predecessor(Card c) const;
+        bool remove(Card c);
+    
 
 
         class iterator;
@@ -30,8 +28,6 @@ class CardBST{
         iterator rbegin();
         iterator rend();
         void insert(Card c);
-        void erase(Card c);
-
     private:
 
         struct Node{
@@ -46,15 +42,13 @@ class CardBST{
         };
         Node* root;
         void printInOrder(Node* r) const;
-        Node* successor(Node* r) const;
-        Node* predecessor(Node* r) const;
+        Node* getSuccessorNode(Node* r) const;
+        Node* getPredecessorNode(Node* r) const;
         Node* getMin(Node* r) const;
         Node* getMax(Node* r) const;
         Node* getNodeFor(Card c, Node* r) const;
         void insert(Card c, Node* root);
-        void clear(Node* r);
-        void erase(Card c, Node* root);
-        
+        void clear(Node* r);        
 
     };
 
@@ -62,13 +56,13 @@ class CardBST{
         public:
             iterator(CardBST::Node* pcurr = nullptr, CardBST* ptree = nullptr) : curr(pcurr), rtree(ptree){}
 
-            CardBST operator*();
+            Card operator*();
             iterator& operator++();
             iterator& operator--();
         private:
             CardBST::Node* curr;
             CardBST* rtree;
-    }
+    };
 
 
 #endif

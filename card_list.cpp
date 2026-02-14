@@ -47,15 +47,6 @@ CardBST::Node* CardBST::getNodeFor(Card c, Node* r) const{
         return getNodeFor(c, r->right);
     }
 }
-/*
-Card CardBST::successor(Card c) const{
-    
-}
-
-Card CardBST::predecessor(Card c) const{
-    Card pred = predec
-}
-*/
 
 CardBST::Node* CardBST::getMin(Node* n) const{
     if(!n){
@@ -113,52 +104,87 @@ void CardBST::insert(Card new_card, Node* n){
         }
     }
 }
-/*
-IntBST::Node* IntBST::getPredecessorNode(int value) const{
 
-     Node *curr = getNodeFor(value, root);
-
-    if(!curr) return nullptr;
-
-    if (curr->left){
-
-        Node *r = curr->left;
-
-        while(r->right){
-
-            r=r->right;
-
+CardBST::Node* CardBST::getSuccessorNode(Node* r) const{
+    if(!r) return nullptr;
+    Node* result = nullptr;
+    if(r->right){
+        result = getMin(r->right);
+    }else{
+        Node* p = r->parent;
+        while(p && r == p->right){
+            r = p;
+            p = p->parent;
         }
-
-        return r;
-
+        result = p;
     }
-
-    Node *p = curr->parent;
-
-    while (p && curr == p->left){
-
-        curr = p;
-
-        p = p->parent;
-
+    return result;
+}
+CardBST::Node* CardBST::getPredecessorNode(Node* r)const{
+    if(!r) return nullptr;
+    Node* result = nullptr;
+    if(r->left){
+        result = getMax(r->left);
+    }else{
+        Node* p = r->parent;
+        while(p && r == p->left){
+            r = p;
+            p = p->parent;
+        }
+        result = p;
     }
-
-    return p;
-
+    return result;
+}
+bool CardBST::remove(Card c){
+   Node *curr = getNodeFor(c,root);
+   if (!curr) return false;
+   if (curr->left && curr->right){
+    Node* successor = getSuccessorNode(curr);
+    curr->card = successor->card;
+    curr = successor;
+   }
+   Node* child = nullptr;
+   if (curr->left){
+    child = curr->left;
+   } else {
+    child = curr->right;
+   }
+   if(child){
+    child->parent = curr->parent;
+   }
+   if(!curr->parent){
+    root = child;
+   } else if (curr == curr->parent->left){
+    curr->parent->left = child;
+   } else {
+    curr->parent->right = child;
+   }
+   delete curr;
+   return true;
 }
 
 
-
-// returns the predecessor value of the given value or 0 if there is none
-
-int IntBST::getPredecessor(int value) const{
-
-   Node* predecessor = getPredecessorNode(value);
-
-    if (!predecessor) return 0;
-
-    return predecessor->info;
-
+Card CardBST::iterator::operator*(){
+    return curr->card;
 }
-*/
+CardBST::iterator CardBST::begin(){
+    return iterator(getMin(root), this);
+}
+CardBST::iterator CardBST::end(){
+    return iterator(nullptr, this);
+}
+CardBST::iterator CardBST::rbegin(){
+    return iterator(getMax(root), this);
+}
+CardBST::iterator CardBST::rend(){
+    return iterator(nullptr, this);
+}
+CardBST::iterator& CardBST::iterator::operator++(){
+    curr = rtree->getSuccessorNode(curr);
+    return *this;
+}
+CardBST::iterator& CardBST::iterator::operator--(){
+    curr = rtree->getPredecessorNode(curr);
+    return *this;
+}
+
