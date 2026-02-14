@@ -17,7 +17,7 @@ class CardBST{
         //void printReverseOrder() const;
         
         bool contains(Card c) const;
-        bool remove(Card c);
+        //bool remove(Card c);
 
         Card* successor(Card c) const;
         Card* predecessor(Card c) const;
@@ -53,6 +53,7 @@ class CardBST{
         Node* getNodeFor(Card c, Node* r) const;
         void insert(Card c, Node* root);
         void clear(Node* r);
+        void erase(Card c, Node* root);
         
 
     };

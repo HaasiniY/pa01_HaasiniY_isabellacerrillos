@@ -67,6 +67,16 @@ CardBST::Node* CardBST::getMin(Node* n) const{
     return n;
 }
 
+CardBST::Node* CardBST::getMax(Node* n) const{
+    if(!n){
+        return nullptr;
+    }
+    while(n->right){
+        n = n->right;
+    }
+    return n;
+}
+
 void CardBST::clear(Node* root){
     if(!root){
         return;
