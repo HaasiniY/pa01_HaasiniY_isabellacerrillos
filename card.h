@@ -11,18 +11,15 @@ using namespace std;
 class Card{
     public: 
     Card(char s, char val );
-    // getter and setter functions
-    // operator overloading
-    
-    
-
-    private:
-    char suit;
-    char value; 
 
     char getSuit() const;
     char getValue() const;
-    
+    int getSuitNum(char c) const;
+    int getLetterNum(char val) const;
+
+    private:
+    char suit;
+    char value;   
     
 };
 ostream& operator<<(ostream& out, const Card& c);
