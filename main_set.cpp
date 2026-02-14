@@ -52,39 +52,38 @@ int main(int argv, char** argc){
     bob_hand.insert(Card(suit, value));
   }
   cardFile2.close();
-bool cardsInCommon = true;
 
-while (cardsInCommon) {
-    cardsInCommon = false;
 
-    for (auto it = alice_hand.begin(); it != alice_hand.end(); ++it) {
-        Card c = *it;
-        if (bob_hand.count(c)) {
-            cout << "Alice picked matching card " << c << endl;
-            alice_hand.erase(c);
-            bob_hand.erase(c);
-            cardsInCommon = true;
-            break;  
-        }
+  bool common = true;
+
+  while (common) {
+    common = false;
+
+    for (Card c: alice_hand) {
+      if (bob_hand.count(c)) {
+        cout << "Alice picked matching card " << c << endl;
+        alice_hand.erase(c);
+        bob_hand.erase(c);
+        common = true;
+        break;  
+      }
     }
+    if (!common) break; 
 
-    if (!cardsInCommon) break; 
-
-    cardsInCommon = false;
+    common = false;
 
     for (auto it = bob_hand.rbegin(); it != bob_hand.rend(); ++it) {
-        Card c = *it;
-        if (alice_hand.count(c)) {
-            cout << "Bob picked matching card " << c << endl;
-            alice_hand.erase(c);
-            bob_hand.erase(c);
-            cardsInCommon = true;
-            break;  
-        }
-      
-    }
-  
+      Card c = *it;
+      if (alice_hand.count(c)) {
+        cout << "Bob picked matching card " << c << endl;
+        alice_hand.erase(c);
+        bob_hand.erase(c);
+        common = true;
+        break;  
+      }
+    }  
   }
+
 cout << "Alice's cards:" << endl;
   for (Card c : alice_hand){
     cout << c << endl;
@@ -96,53 +95,3 @@ cout << "Alice's cards:" << endl;
 return 0;
 
 }
-
-
- /* string aliceMatch = "Alice picked a matching card ";
-  string bobMatch = "Bob picked a matching card ";
-  bool aliceTurn = true;
-  bool bobTurn = false;
-  while(true){
-  while (aliceTurn){
-    for(auto x = alice_hand.begin(); x != alice_hand.end(); ++x){
-       for(auto it = bob_hand.rbegin(); it != bob_hand.rend(); ++it){
-        if(*x==*it){
-          if (aliceTurn){
-          cout << aliceMatch << *x;
-          alice_hand.erase(*x);
-          aliceTurn = false;
-          bobTurn = true; 
-        }
-      }
-    }
-    } 
-  }
-  while (bobTurn){
-    for(auto x = bob_hand.rbegin(); x != bob_hand.rend(); ++x){
-       for(auto it = alice_hand.begin(); it != alice_hand.end(); ++it){
-        if(*x==*it){
-          if (bobTurn){
-          cout << bobMatch << *x;
-          bob_hand.erase(*x);
-          aliceTurn = true;
-          bobTurn = false; 
-        }
-      }
-    }
-    } 
-  }
-  if(!aliceTurn && !bobTurn){
-    break;
-  }
-  }
-  cout << "Alice's cards" << endl;
-  for (Card c : alice_hand){
-    cout << c << endl;
-  }
-  cout << "Bob's cards" << endl;
-  for (Card c : bob_hand){
-    cout << c << endl;
-  }
-  return 0;
-}
-*/
