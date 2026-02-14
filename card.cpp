@@ -65,7 +65,7 @@ bool operator<(const Card& lhs, const Card& rhs){
         return true;
     }
     if(lhs.getSuitNum(lhs.getSuit()) == rhs.getSuitNum(rhs.getSuit())) {
-        if(lhs.getLetterNum() < rhs.getLetterNum()){
+        if(lhs.getLetterNum(lhs.getValue()) < rhs.getLetterNum(rhs.getValue())){
             return true;
         }
     }
@@ -76,7 +76,7 @@ bool operator>(const Card& lhs, const Card& rhs){
         return true;
     }
     if(lhs.getSuitNum(lhs.getSuit()) == rhs.getSuitNum(rhs.getSuit())) {
-        if(lhs.getLetterNum() > rhs.getLetterNum()){
+        if(lhs.getLetterNum(lhs.getValue()) > rhs.getLetterNum(rhs.getValue())){
             return true;
         }
     }
