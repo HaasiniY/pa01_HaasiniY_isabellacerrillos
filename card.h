@@ -10,16 +10,16 @@ using namespace std;
 
 class Card{
     public: 
-    Card(char s, char val );
+    Card(char s, string val );
 
     char getSuit() const;
-    char getValue() const;
+    string getValue() const;
     int getSuitNum(char c) const;
-    int getLetterNum(char val) const;
+    int getLetterNum(string val) const;
 
     private:
     char suit;
-    char value;   
+    string value;   
     
 };
 ostream& operator<<(ostream& out, const Card& c);
@@ -27,3 +27,5 @@ bool operator==(const Card& lhs, const Card& rhs);
 bool operator<(const Card& lhs, const Card& rhs);
 bool operator>(const Card& lhs, const Card& rhs);
 #endif
+
+
