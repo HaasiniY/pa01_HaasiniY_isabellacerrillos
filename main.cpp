@@ -50,47 +50,7 @@ int main(int argv, char** argc){
   }
   cardFile2.close();
 
-
-  bool common = true;
-
-  while (common) {
-    common = false;
-
-    for (auto it = alice.begin(); it != alice.end(); ++it) {
-      if (bob.contains(*it)) {
-        Card c = *it;
-        cout << "Alice picked matching card " << c << endl;
-        alice.remove(c);
-        bob.remove(c);
-        common = true;
-        break;  
-      }
-    }
-    if (!common) break; 
-
-    common = false;
-
-    for (auto it = bob.rbegin(); it != bob.rend(); --it) {
-      Card c = *it;
-      if (alice.contains(*it)) {
-        Card c = *it;
-        cout << "Bob picked matching card " << c << endl;
-        alice.remove(c);
-        bob.remove(c);
-        common = true;
-        break;  
-      }
-    }  
-  }
-
-cout << "Alice's cards:" << endl;
-  for (auto it = alice.begin(); it != alice.end(); ++it){
-    cout << *it << endl;
-  }
-  cout << "Bob's cards:" << endl;
-  for (auto it = bob.rbegin(); it != bob.rend(); --it){
-    cout << *it << endl;
-  }
+  playGame(alice, bob);
 
   return 0;
 }

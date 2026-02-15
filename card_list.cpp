@@ -194,3 +194,42 @@ bool CardBST::iterator::operator==(const iterator& other) const{
     return curr == other.curr;
 }
 
+void playGame(CardBST& alice, CardBST& bob){
+    bool common = true;
+
+  while (common) {
+    common = false;
+
+    for (auto it = alice.begin(); it != alice.end(); ++it) {
+      if (bob.contains(*it)) {
+        Card c = *it;
+        cout << "Alice picked matching card " << c << endl;
+        alice.remove(c);
+        bob.remove(c);
+        common = true;
+        break;  
+      }
+    }
+    if (!common) break; 
+
+    common = false;
+
+    for (auto it = bob.rbegin(); it != bob.rend(); --it) {
+      Card c = *it;
+      if (alice.contains(*it)) {
+        Card c = *it;
+        cout << "Bob picked matching card " << c << endl;
+        alice.remove(c);
+        bob.remove(c);
+        common = true;
+        break;  
+      }
+    }  
+  }
+
+  cout << "Alice's cards:" << endl;
+  alice.printInOrder();
+  cout << "Bob's cards:" << endl;
+  bob.printInOrder();
+}
+

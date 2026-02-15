@@ -14,13 +14,10 @@ class CardBST{
         ~CardBST();
 
         void printInOrder() const;
-        //void printReverseOrder() const;
         
         bool contains(Card c) const;
         bool remove(Card c);
     
-
-
         class iterator;
 
         iterator begin();
@@ -66,5 +63,5 @@ class CardBST{
             const CardBST* rtree;
     };
 
-
+void playGame(CardBST& alice, CardBST& bob);
 #endif
