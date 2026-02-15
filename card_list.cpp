@@ -227,9 +227,9 @@ void playGame(CardBST& alice, CardBST& bob){
     }  
   }
 
-  cout << "Alice's cards:" << endl;
+  cout << "\nAlice's cards:" << endl;
   alice.printInOrder();
-  cout << "Bob's cards:" << endl;
+  cout << "\nBob's cards:" << endl;
   bob.printInOrder();
 }
 

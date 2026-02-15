@@ -84,11 +84,11 @@ int main(int argv, char** argc){
     }  
   }
 
-cout << "Alice's cards:" << endl;
+cout << "\nAlice's cards:" << endl;
   for (Card c : alice_hand){
     cout << c << endl;
   }
-  cout << "Bob's cards:" << endl;
+  cout << "\nBob's cards:" << endl;
   for (Card c : bob_hand){
     cout << c << endl;
   }
